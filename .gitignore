@@ -9,7 +9,7 @@ code/__pycache__
 code/trained_models
 nohup.out
 ~/.cache/
-
+nohups/
 # template
 work*
 work_bak/

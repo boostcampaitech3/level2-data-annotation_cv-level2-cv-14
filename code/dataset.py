@@ -405,46 +405,7 @@ class SceneTextDataset(Dataset):
             image = image.convert("RGB")
         image = np.array(image)
 
-        funcs = [
-            A.Flip(p=0.5),
-            A.Resize(1024, 1024),
-            A.RandomRotate90(p=1),
-            A.OneOf(
-                transforms=[
-                    A.HueSaturationValue(
-                        hue_shift_limit=10, sat_shift_limit=35, val_shift_limit=25
-                    ),
-                    A.RandomGamma(),
-                    A.CLAHE(),
-                ],
-                p=0.5,
-            ),
-            A.OneOf(
-                transforms=[
-                    A.RandomBrightnessContrast(
-                        brightness_limit=0.25, contrast_limit=0.25
-                    ),
-                    A.RGBShift(r_shift_limit=15, g_shift_limit=15, b_shift_limit=15),
-                ],
-                p=0.5,
-            ),
-            A.OneOf(
-                transforms=[
-                    A.Blur(),
-                    A.MotionBlur(),
-                    A.GaussNoise(),
-                    A.ImageCompression(quality_lower=75),
-                ],
-                p=0.4,
-            ),
-            A.Cutout(
-                num_holes=15,
-                max_h_size=30,
-                max_w_size=30,
-                fill_value=0,
-                p=0.4,
-            ),
-        ]
+        funcs = []
         if self.color_jitter:
             funcs.append(A.ColorJitter(0.5, 0.5, 0.5, 0.25))
         if self.normalize:
