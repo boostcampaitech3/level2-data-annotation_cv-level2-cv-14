@@ -122,3 +122,4 @@ ENV/
 .vscode-server/
 .ipython/
 .local/
+.gitconfig

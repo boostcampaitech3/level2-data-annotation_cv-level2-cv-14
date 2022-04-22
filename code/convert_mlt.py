@@ -29,7 +29,7 @@ def get_language_token(x):
 
 def maybe_mkdir(x):
     if not osp.exists(x):
-        os.makedirs(x)
+        os.makedirs(x,exist_ok=True)
 
 
 class MLT17Dataset(Dataset):
